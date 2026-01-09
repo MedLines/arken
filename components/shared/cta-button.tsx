@@ -6,10 +6,14 @@ import { cn } from '@/lib/utils' // Standard shadcn utility
 interface CtaButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
   variant?: 'primary' | 'outline'
+  showIcon?: boolean
 }
 
 const CtaButton = React.forwardRef<HTMLButtonElement, CtaButtonProps>(
-  ({ className, text, variant = 'primary', ...props }, ref) => {
+  (
+    { className, text, variant = 'primary', showIcon = true, ...props },
+    ref
+  ) => {
     const variants = {
       primary:
         'bg-primary text-primary-foreground shadow-[1px_1px_4px_0px_rgba(0,0,0,0.08)] hover:bg-primary/90 hover:ring-primary/10 hover:shadow-md hover:ring-4',
@@ -39,6 +43,7 @@ const CtaButton = React.forwardRef<HTMLButtonElement, CtaButtonProps>(
 
           // Disabled State
           'disabled:pointer-events-none disabled:opacity-50',
+          'whitespace-nowrap',
 
           // Variant Styles
           variants[variant],
@@ -50,13 +55,15 @@ const CtaButton = React.forwardRef<HTMLButtonElement, CtaButtonProps>(
         <span>{text}</span>
 
         {/* 4. Animated Icon */}
-        <MoveRight
-          size={16}
-          // Icon slides right on hover
-          className="transition-transform duration-300 group-hover:translate-x-1"
-          // 5. Hide decorative icon from screen readers
-          aria-hidden="true"
-        />
+        {showIcon && (
+          <MoveRight
+            size={16}
+            // Icon slides right on hover
+            className="transition-transform duration-300 group-hover:translate-x-1"
+            // 5. Hide decorative icon from screen readers
+            aria-hidden="true"
+          />
+        )}
       </button>
     )
   }

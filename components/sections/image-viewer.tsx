@@ -28,7 +28,7 @@ function SlideTitle({ item }: { item: (typeof items)[0] }) {
     <motion.h3
       layout
       layoutId={`h3-${item.id}`}
-      className="text-4xl font-bold text-white drop-shadow-md"
+      className="text-2xl font-bold text-white drop-shadow-md md:text-4xl"
     >
       <motion.span className="block" layout>
         {item.name}
@@ -167,7 +167,7 @@ export function ImageViewer() {
       </AnimatePresence>
 
       <div
-        className={`relative z-50 container mx-auto flex h-[700px] w-11/12 max-w-[1280px] items-center justify-center transition-all duration-500 ${selectedId ? 'gap-0' : 'gap-4'}`}
+        className={`relative z-50 container mx-auto flex h-[800px] w-11/12 max-w-[1280px] flex-col justify-center transition-all duration-500 md:h-[700px] md:flex-row md:items-center ${selectedId ? 'gap-0' : 'gap-4'}`}
       >
         {items.map((item, index) => {
           const isSelected = selectedId === item.id
@@ -192,7 +192,6 @@ export function ImageViewer() {
               animate={{
                 flex: isSelected ? 12 : isOtherSelected ? 0 : isHovered ? 4 : 2,
                 opacity: isOtherSelected ? 0 : 1,
-                width: isOtherSelected ? 0 : 'auto',
               }}
               onHoverStart={() => handleHoverStart(index)}
               onHoverEnd={handleHoverEnd}
