@@ -43,17 +43,17 @@ const steps = [
 
 export function Process() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const isInView = useInView(ref, { once: true, amount: 0.4 })
 
   return (
-    <section className="bg-black py-24 text-white" ref={ref}>
+    <section className="dark bg-background text-foreground py-24" ref={ref}>
       <div className="mx-auto w-11/12 max-w-[1280px] px-4 md:px-6">
         <div className="mb-16 flex flex-col items-center text-center">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="mb-4 text-sm font-medium tracking-widest text-zinc-500 uppercase"
+            className="text-muted-foreground mb-4 text-sm font-medium tracking-widest uppercase"
           >
             The Process
           </motion.span>
@@ -69,7 +69,7 @@ export function Process() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-[700px] text-zinc-400 md:text-lg"
+            className="text-muted-foreground max-w-[700px] md:text-lg"
           >
             We have standardized the construction process to move you from
             deposit to move-in day in as little as 16 weeks.
@@ -105,7 +105,7 @@ export function Process() {
                 transition: { duration: 0.2 },
               }}
               className={cn(
-                'group relative flex flex-col items-center overflow-hidden rounded-3xl border border-white/5 bg-zinc-900 p-8 text-center md:items-start md:text-left',
+                'group border-border/40 relative flex flex-col items-center overflow-hidden rounded-3xl border bg-black/70 p-8 text-center md:items-start md:text-left',
                 index === 1 || index === 2 ? 'md:col-span-2' : 'md:col-span-3'
               )}
             >
@@ -113,7 +113,7 @@ export function Process() {
               {/* Background Image & Overlay Container */}
               <div className="absolute inset-0 z-0">
                 {/* Dark Gradient Background - Edit from/via/to colors to change contrast */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-black/30" />
+                <div className="from-background/80 via-background/50 to-background/30 absolute inset-0 bg-linear-to-t" />
 
                 {/* Process Step Image - Rendered on top of gradient */}
                 <img
@@ -123,10 +123,10 @@ export function Process() {
                 />
               </div>
 
-              <span className="absolute top-8 right-8 z-10 text-xl font-bold text-white/50 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors group-hover:text-white">
+              <span className="text-foreground/50 group-hover:text-foreground absolute top-8 right-8 z-10 text-xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors">
                 {step.number}
               </span>
-              <div className="text-background ring-primary relative z-10 mb-8 flex h-14 w-14 items-center justify-center rounded-full ring backdrop-blur-sm">
+              <div className="text-foreground ring-primary relative z-10 mb-8 flex h-14 w-14 items-center justify-center rounded-full ring backdrop-blur-sm">
                 <step.icon className="h-7 w-7" />
               </div>
 
@@ -135,7 +135,7 @@ export function Process() {
               </h3>
               <p
                 className={cn(
-                  'relative z-10 mb-8 flex-grow text-base leading-relaxed text-zinc-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]',
+                  'text-muted-foreground relative z-10 mb-8 flex-grow text-base leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]',
                   index === 0 || index === 3 ? 'md:max-w-[70%]' : ''
                 )}
               >
@@ -143,7 +143,7 @@ export function Process() {
               </p>
 
               <div className="relative z-10 mt-auto flex w-full justify-center md:justify-start">
-                <button className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:scale-110">
+                <button className="bg-foreground text-background flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110">
                   <ArrowRight className="h-6 w-6 -rotate-45 transition-transform duration-300 group-hover:rotate-0" />
                 </button>
               </div>

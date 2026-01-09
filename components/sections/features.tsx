@@ -85,7 +85,7 @@ export function Features() {
           >
             <div className="flex flex-col justify-between gap-8 md:gap-12 lg:flex-row lg:gap-16">
               <div className="space-y-4 lg:w-[45%] lg:space-y-6">
-                <span className="block text-sm font-medium tracking-widest text-zinc-500 uppercase">
+                <span className="text-muted-foreground block text-sm font-medium tracking-widest uppercase">
                   The Philosophy
                 </span>
                 <h2 className="text-foreground text-3xl font-semibold tracking-tight md:text-5xl lg:text-6xl lg:leading-[1.1]">

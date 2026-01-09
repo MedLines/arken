@@ -30,7 +30,7 @@ const features = [
 
 export function Approach() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const isInView = useInView(ref, { once: true, amount: 0.4 })
 
   return (
     <section ref={ref} className="bg-background py-16">
@@ -40,7 +40,7 @@ export function Approach() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="mb-6 text-sm font-medium tracking-widest text-zinc-500 uppercase"
+            className="text-muted-foreground mb-6 text-sm font-medium tracking-widest uppercase"
           >
             The Approach
           </motion.span>
@@ -49,7 +49,7 @@ export function Approach() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-6 text-3xl font-semibold tracking-tight text-black md:text-5xl lg:text-6xl"
+            className="text-foreground mb-6 text-3xl font-semibold tracking-tight md:text-5xl lg:text-6xl"
           >
             Why build modular?
           </motion.h2>
@@ -58,7 +58,7 @@ export function Approach() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg text-zinc-500 md:text-xl"
+            className="text-muted-foreground text-lg md:text-xl"
           >
             A smarter, faster path to modern living.
           </motion.p>
@@ -75,7 +75,7 @@ export function Approach() {
             >
               <div className="border-border/40 bg-secondary/10 relative mb-6 flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg border">
                 {/* Center Crosshair Grid */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808040_1px,transparent_1px),linear-gradient(to_bottom,#80808040_1px,transparent_1px)] bg-size-[25px_25px] bg-center" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-size-[25px_25px] bg-center" />
 
                 <feature.icon
                   size={20}
@@ -83,11 +83,11 @@ export function Approach() {
                 />
               </div>
 
-              <h3 className="mb-4 text-xl font-medium text-black">
+              <h3 className="text-foreground mb-4 text-xl font-medium">
                 {feature.title}
               </h3>
 
-              <p className="leading-relaxed text-zinc-500">
+              <p className="text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
