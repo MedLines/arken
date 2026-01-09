@@ -34,7 +34,7 @@ export function Hero() {
     target: ref,
     offset: ['start end', 'end start'],
   })
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95])
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.6, 1, 0.8])
 
   const imageVariants: Variants = {
     hidden: { opacity: 0, y: 50 },

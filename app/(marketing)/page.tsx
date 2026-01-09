@@ -1,3 +1,4 @@
+import { Approach } from '@/components/sections/approach'
 import { Catalog } from '@/components/sections/catalog'
 import { Features } from '@/components/sections/features'
 import { Hero } from '@/components/sections/hero'
@@ -9,6 +10,7 @@ export default function MarketingPage() {
     <>
       <Hero />
       <Features />
+      <Approach />
       <Process />
       <Catalog />
       <Testimonial />

@@ -73,7 +73,7 @@ export function Features() {
               ? { scale: 1, borderRadius: '24px', y: 0 }
               : { scale, borderRadius, y }
           }
-          className="bg-secondary relative mx-auto flex w-11/12 max-w-[1280px] flex-1 flex-col justify-start overflow-hidden px-4 py-8 md:px-8 md:py-12 lg:mx-0 lg:w-full lg:max-w-none lg:p-10"
+          className="bg-secondary relative mx-auto flex w-11/12 max-w-[1280px] flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-8 md:py-12 lg:mx-0 lg:w-full lg:max-w-none lg:p-10"
         >
           <motion.div
             style={
@@ -85,10 +85,10 @@ export function Features() {
           >
             <div className="flex flex-col justify-between gap-8 md:gap-12 lg:flex-row lg:gap-16">
               <div className="space-y-4 lg:w-[45%] lg:space-y-6">
-                <span className="text-muted-foreground block text-sm font-medium tracking-widest uppercase">
+                <span className="block text-sm font-medium tracking-widest text-zinc-500 uppercase">
                   The Philosophy
                 </span>
-                <h2 className="text-foreground text-3xl leading-tight font-semibold tracking-tight md:text-5xl lg:text-6xl lg:leading-[1.1]">
+                <h2 className="text-foreground text-3xl font-semibold tracking-tight md:text-5xl lg:text-6xl lg:leading-[1.1]">
                   Construction, productized.
                 </h2>
               </div>
