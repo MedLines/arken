@@ -73,7 +73,7 @@ export function Features() {
               ? { scale: 1, borderRadius: '24px', y: 0 }
               : { scale, borderRadius, y }
           }
-          className="bg-secondary relative mx-auto flex w-11/12 max-w-[1280px] flex-1 flex-col justify-start overflow-hidden px-4 py-8 md:px-8 md:py-12 lg:mx-0 lg:w-full lg:max-w-none lg:p-16"
+          className="bg-secondary relative mx-auto flex w-11/12 max-w-[1280px] flex-1 flex-col justify-start overflow-hidden px-4 py-8 md:px-8 md:py-12 lg:mx-0 lg:w-full lg:max-w-none lg:p-10"
         >
           <motion.div
             style={
@@ -81,9 +81,9 @@ export function Features() {
                 ? { opacity: 1, y: 0 }
                 : { opacity: contentOpacity, y: contentY }
             }
-            className="container mx-auto mt-8 space-y-12 md:mt-12 md:space-y-16 lg:mt-16 lg:space-y-24"
+            className="container mx-auto mt-8 space-y-12 md:mt-12 md:space-y-16 lg:mt-8 lg:space-y-12"
           >
-            <div className="flex flex-col justify-between gap-8 md:gap-12 lg:flex-row lg:gap-24">
+            <div className="flex flex-col justify-between gap-8 md:gap-12 lg:flex-row lg:gap-16">
               <div className="space-y-4 lg:w-[45%] lg:space-y-6">
                 <span className="text-muted-foreground block text-sm font-medium tracking-widest uppercase">
                   The Philosophy
