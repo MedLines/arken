@@ -9,7 +9,7 @@ export const siteConfig = {
     { title: 'Showrooms', href: '#showrooms' },
   ],
   links: {
-    twitter: 'https://twitter.com/arken',
-    github: 'https://github.com/arken',
+    twitter: '',
+    github: '',
   },
 }

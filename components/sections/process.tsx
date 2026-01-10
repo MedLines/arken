@@ -43,7 +43,7 @@ const steps = [
 
 export function Process() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.4 })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
     <section className="dark bg-background text-foreground py-24" ref={ref}>
@@ -76,30 +76,14 @@ export function Process() {
           </motion.p>
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.3,
-              },
-            },
-          }}
-          className="grid gap-6 md:grid-cols-5 lg:gap-8"
-        >
+        <div className="grid gap-6 md:grid-cols-5 lg:gap-8">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.5 },
-                },
-              }}
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{
                 y: -5,
                 transition: { duration: 0.2 },
@@ -135,7 +119,7 @@ export function Process() {
               </h3>
               <p
                 className={cn(
-                  'text-muted-foreground relative z-10 mb-8 flex-grow text-base leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]',
+                  'text-muted-foreground relative z-10 mb-8 grow text-base leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]',
                   index === 0 || index === 3 ? 'md:max-w-[70%]' : ''
                 )}
               >
@@ -149,7 +133,7 @@ export function Process() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
