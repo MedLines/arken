@@ -17,7 +17,7 @@ export function Footer() {
         <div className="flex flex-col items-center gap-6 text-left lg:max-w-md lg:items-start">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/logo.svg"
+              src="/images/logo/logo.svg"
               alt="Logo"
               width={24}
               height={24}
