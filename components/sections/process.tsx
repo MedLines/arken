@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { ArrowRight, Factory, PencilRuler, PenTool, Truck } from 'lucide-react'
+import { Factory, PencilRuler, PenTool, Truck } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 
 import { cn } from '@/lib/utils'
@@ -89,17 +89,13 @@ export function Process() {
                 transition: { duration: 0.2 },
               }}
               className={cn(
-                'group border-border/40 relative flex flex-col items-center overflow-hidden rounded-3xl border bg-black/70 p-8 text-center md:items-start md:text-left',
+                'group border-border/40 relative flex min-h-[350px] flex-col justify-between overflow-hidden rounded-3xl border bg-black/70 p-8 text-center md:items-start md:text-left',
                 index === 1 || index === 2 ? 'md:col-span-2' : 'md:col-span-3'
               )}
             >
               {/* Background Image & Overlay */}
-              {/* Background Image & Overlay Container */}
               <div className="absolute inset-0 z-0">
-                {/* Dark Gradient Background - Edit from/via/to colors to change contrast */}
                 <div className="from-background/80 via-background/50 to-background/30 absolute inset-0 bg-linear-to-t" />
-
-                {/* Process Step Image - Rendered on top of gradient */}
                 <img
                   src={step.image}
                   alt={step.title}
@@ -107,29 +103,29 @@ export function Process() {
                 />
               </div>
 
-              <span className="text-foreground/50 group-hover:text-foreground absolute top-8 right-8 z-10 text-xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors">
-                {step.number}
-              </span>
-              <div className="text-foreground ring-primary relative z-10 mb-8 flex h-14 w-14 items-center justify-center rounded-full ring backdrop-blur-sm">
-                <step.icon className="h-7 w-7" />
+              {/* Top Content: Icon & Number */}
+              <div className="relative z-10 flex w-full items-start justify-between">
+                <div className="text-foreground ring-primary flex h-14 w-14 items-center justify-center rounded-full ring backdrop-blur-sm">
+                  <step.icon className="h-7 w-7" />
+                </div>
+                <span className="text-foreground/50 group-hover:text-foreground text-xl font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-colors">
+                  {step.number}
+                </span>
               </div>
 
-              <h3 className="text-primary relative z-10 mb-3 text-2xl font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                {step.title}
-              </h3>
-              <p
-                className={cn(
-                  'text-muted-foreground relative z-10 mb-8 grow text-base leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]',
-                  index === 0 || index === 3 ? 'md:max-w-[70%]' : ''
-                )}
-              >
-                {step.description}
-              </p>
-
-              <div className="relative z-10 mt-auto flex w-full justify-center md:justify-start">
-                <button className="bg-foreground text-background flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110">
-                  <ArrowRight className="h-6 w-6 -rotate-45 transition-transform duration-300 group-hover:rotate-0" />
-                </button>
+              {/* Bottom Content: Title & Description */}
+              <div className="relative z-10 mt-4">
+                <h3 className="text-primary mb-3 text-2xl font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                  {step.title}
+                </h3>
+                <p
+                  className={cn(
+                    'text-muted-foreground text-base leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]',
+                    index === 0 || index === 3 ? 'md:max-w-[70%]' : ''
+                  )}
+                >
+                  {step.description}
+                </p>
               </div>
             </motion.div>
           ))}
