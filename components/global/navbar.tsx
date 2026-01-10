@@ -13,7 +13,7 @@ export function Navbar() {
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Image
             className="text-primary"
-            src="/images/logo.svg"
+            src="/images/logo/logo.svg"
             alt="Logo"
             width={19}
             height={19}
