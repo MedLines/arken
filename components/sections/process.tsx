@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import NextImage from 'next/image'
 import { Factory, PencilRuler, PenTool, Truck } from 'lucide-react'
 import { motion, useInView } from 'motion/react'
 
@@ -46,7 +47,11 @@ export function Process() {
   const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section className="dark bg-background text-foreground py-24" ref={ref}>
+    <section
+      id="process"
+      className="dark bg-background text-foreground py-24"
+      ref={ref}
+    >
       <div className="mx-auto w-11/12 max-w-[1280px] px-4 md:px-6">
         <div className="mb-16 flex flex-col items-center text-center">
           <motion.span
@@ -96,10 +101,13 @@ export function Process() {
               {/* Background Image & Overlay */}
               <div className="absolute inset-0 z-0">
                 <div className="from-background/80 via-background/50 to-background/30 absolute inset-0 bg-linear-to-t" />
-                <img
+                <NextImage
                   src={step.image}
                   alt={step.title}
-                  className="h-full w-full object-cover opacity-100! transition-transform duration-500 group-hover:scale-115"
+                  fill
+                  loading="lazy"
+                  className="object-cover opacity-100! transition-transform duration-500 group-hover:scale-115"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
 

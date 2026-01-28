@@ -64,7 +64,11 @@ export function Features() {
   const contentY = useTransform(scrollYProgress, [0.35, 0.5], [20, 0])
 
   return (
-    <section ref={containerRef} className="relative h-auto lg:h-[250vh]">
+    <section
+      id="philosophy"
+      ref={containerRef}
+      className="relative h-auto lg:h-[250vh]"
+    >
       <div className="flex flex-col gap-8 lg:sticky lg:top-14 lg:z-20 lg:h-[calc(100vh-3.5rem)] lg:gap-0 lg:overflow-hidden">
         <Marquee />
         <motion.div

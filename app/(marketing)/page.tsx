@@ -1,10 +1,25 @@
-import { Approach } from '@/components/sections/approach'
-import { Catalog } from '@/components/sections/catalog'
-import { Contact } from '@/components/sections/contact'
-import { Features } from '@/components/sections/features'
+import dynamic from 'next/dynamic'
+
 import { Hero } from '@/components/sections/hero'
-import { Process } from '@/components/sections/process'
-import { Testimonial } from '@/components/sections/testimonial'
+
+const Features = dynamic(() =>
+  import('@/components/sections/features').then((mod) => mod.Features)
+)
+const Approach = dynamic(() =>
+  import('@/components/sections/approach').then((mod) => mod.Approach)
+)
+const Process = dynamic(() =>
+  import('@/components/sections/process').then((mod) => mod.Process)
+)
+const Catalog = dynamic(() =>
+  import('@/components/sections/catalog').then((mod) => mod.Catalog)
+)
+const Testimonial = dynamic(() =>
+  import('@/components/sections/testimonial').then((mod) => mod.Testimonial)
+)
+const Contact = dynamic(() =>
+  import('@/components/sections/contact').then((mod) => mod.Contact)
+)
 
 export default function MarketingPage() {
   return (

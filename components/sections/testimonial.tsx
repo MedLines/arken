@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { ArrowLeft, ArrowRight, Star } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 
@@ -24,8 +25,7 @@ const testimonials: Testimonial[] = [
     author: 'James Miller',
     role: 'Owner, Arken M4',
     // Using a placeholder that matches the "man with glasses" description from the design
-    image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop',
+    image: '/images/James-Miller.avif',
   },
   {
     id: 2,
@@ -33,10 +33,9 @@ const testimonials: Testimonial[] = [
     quote:
       '"The precision and speed were unmatched. Arken delivered exactly what they promised—a beautiful, sustainable home without the usual construction headaches."',
     rating: 5,
-    author: 'Sarah Jenkins',
+    author: 'Sarah Alba',
     role: 'Architect, Studio 54',
-    image:
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1000&auto=format&fit=crop',
+    image: '/images/Sarah-Alba.avif',
   },
 ]
 
@@ -62,7 +61,7 @@ export function Testimonial() {
   }
 
   return (
-    <section className="bg-background text-foreground py-24">
+    <section id="testimonials" className="bg-background text-foreground py-24">
       <div className="mx-auto w-11/12 max-w-[1280px] px-4 md:px-6">
         {/* Header */}
         <div className="mb-20 flex flex-col items-center text-center">
@@ -85,16 +84,23 @@ export function Testimonial() {
           {/* Image */}
           <div className="relative aspect-square w-full overflow-hidden rounded-[2rem] lg:w-1/2">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={currentTestimonial.id}
-                src={currentTestimonial.image}
-                alt={currentTestimonial.author}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="h-full w-full object-cover"
-              />
+                className="relative h-full w-full"
+              >
+                <Image
+                  src={currentTestimonial.image}
+                  alt={currentTestimonial.author}
+                  fill
+                  loading="lazy"
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </motion.div>
             </AnimatePresence>
           </div>
 

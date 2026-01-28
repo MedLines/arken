@@ -9,17 +9,17 @@ const items = [
   {
     id: 'A1',
     name: 'Arken A1',
-    images: ['/images/Arken-A1-Angle.png', '/images/Arken A1 Front.png'],
+    images: ['/images/Arken-A1-Angle.avif', '/images/Arken A1 Front.avif'],
   },
   {
     id: 'X7',
     name: 'Arken X7',
-    images: ['/images/Arken-X7-Angle.png', '/images/Arken X7 Front.png'],
+    images: ['/images/Arken-X7-Angle.avif', '/images/Arken X7 Front.avif'],
   },
   {
     id: 'M4',
     name: 'Arken M4',
-    images: ['/images/Arken-M4-Angle.png', '/images/Arken M4 Front.jpg'],
+    images: ['/images/Arken-M4-Angle.avif', '/images/Arken M4 Front.avif'],
   },
 ]
 
@@ -219,7 +219,13 @@ export function ImageViewer() {
                       alt={item.name}
                       fill
                       className="object-cover"
-                      priority
+                      priority={index === 0 && activeSlides[index] === 0}
+                      loading={
+                        index === 0 && activeSlides[index] === 0
+                          ? undefined
+                          : 'lazy'
+                      }
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </motion.div>
                 </AnimatePresence>

@@ -98,18 +98,21 @@ export function Footer() {
             <div className="flex flex-col items-center gap-4">
               <Link
                 href="#"
+                aria-label="Follow us on X (Twitter)"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full p-2 transition-colors"
               >
                 <X className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
+                aria-label="Follow us on LinkedIn"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full p-2 transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
               </Link>
               <Link
                 href="#"
+                aria-label="Follow us on Instagram"
                 className="bg-primary hover:bg-primary/90 text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full p-2 transition-colors"
               >
                 <Instagram className="h-5 w-5" />

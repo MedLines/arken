@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 
 import { siteConfig } from '@/config/site'
 
@@ -18,7 +18,7 @@ export function MobileNav() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-[60] flex h-10 w-10 flex-col items-center justify-center gap-1.5 focus:outline-none md:hidden"
+        className="relative z-60 flex h-10 w-10 flex-col items-center justify-center gap-1.5 focus:outline-none md:hidden"
         aria-label="Toggle navigation"
       >
         <motion.span

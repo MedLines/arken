@@ -19,7 +19,7 @@ export function Contact() {
           {/* Background Logo */}
           <div className="pointer-events-none absolute -right-16 -bottom-16 w-[500px] opacity-[0.03] md:-right-32 md:-bottom-32 md:w-[700px]">
             <img
-              src="/images/Logo.svg"
+              src="/images/logo/logo.svg"
               alt=""
               className="h-full w-full grayscale invert"
             />

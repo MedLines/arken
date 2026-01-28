@@ -12,7 +12,7 @@ const catalogItems = [
     id: 'a1',
     title: 'The Backyard Office (A1)',
     description: 'High-Focus Workspace | $185k',
-    image: '/images/The Backyard Office (A1).png',
+    image: '/images/The Backyard Office (A1).avif',
     alt: 'Backyard office module with glass sliding doors',
     fullDescription:
       'Transform your backyard into a sanctuary of productivity with the A1. Featuring floor-to-ceiling glass panels, built-in climate control, and acoustic insulation rated at 45 STC, this 160 sq ft workspace delivers the perfect environment for focused work. Pre-wired for high-speed internet, with optional solar integration for complete energy independence.',
@@ -21,7 +21,7 @@ const catalogItems = [
     id: 'm4',
     title: 'The Alpine Retreat (M4)',
     description: 'Snow-Load Rated | $320k',
-    image: '/images/The Alpine Retreat (M4).png',
+    image: '/images/The Alpine Retreat (M4).avif',
     alt: 'Modern cabin in snowy landscape',
     fullDescription:
       'Engineered for extreme conditions, the M4 handles snow loads up to 120 PSF and temperatures down to -40°F. The triple-pane glazing and R-49 insulation create a warm haven in the harshest winters. With 480 sq ft of living space, radiant floor heating, and a reinforced steel chassis, this is mountain living redefined.',
@@ -30,7 +30,7 @@ const catalogItems = [
     id: 'x7',
     title: 'The Desert Sanctuary (X7)',
     description: 'Net-Zero Ready | $450k',
-    image: '/images/The Desert Sanctuary (X7) .png',
+    image: '/images/The Desert Sanctuary (X7) .avif',
     alt: 'Desert home with solar panels',
     fullDescription:
       'The X7 is our flagship net-zero model, optimized for hot, arid climates. Featuring passive cooling design, integrated 12kW solar array, and Tesla Powerwall compatibility, this 720 sq ft dwelling produces more energy than it consumes. Automated shading systems and smart water recycling make sustainable desert living effortless.',
@@ -39,7 +39,7 @@ const catalogItems = [
     id: 'multi',
     title: 'Multi-Family Stacks',
     description: 'Developer Solutions | Custom Quote',
-    image: '/images/Multi-Family Stacks.png',
+    image: '/images/Multi-Family Stacks.avif',
     alt: 'Multi-story modular apartment complex',
     fullDescription:
       'Scale your vision with our stackable modular system. Each unit is precision-manufactured for perfect alignment, supporting configurations up to 6 stories. Ideal for urban infill, affordable housing developments, and hospitality projects. 50% faster construction timelines, with the same architectural-grade finish as our residential line.',
@@ -58,7 +58,10 @@ export function Catalog() {
   }
 
   return (
-    <section id="models" className="bg-muted flex flex-col items-center py-24">
+    <section
+      id="use-cases"
+      className="bg-muted flex flex-col items-center py-24"
+    >
       <div className="container w-11/12 max-w-[1280px]">
         {/* Section Header */}
         <motion.div
@@ -143,10 +146,11 @@ export function Catalog() {
                         src={item.image}
                         alt={item.alt}
                         fill
+                        loading="lazy"
                         className={`object-cover transition-transform duration-500 ${
                           !isExpanded && 'group-hover:scale-105'
                         }`}
-                        sizes="(min-width: 768px) 50vw, 100vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </motion.div>
 

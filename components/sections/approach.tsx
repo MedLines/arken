@@ -33,7 +33,7 @@ export function Approach() {
   const isInView = useInView(ref, { once: true, amount: 0.4 })
 
   return (
-    <section ref={ref} className="bg-background py-16">
+    <section id="approach" ref={ref} className="bg-background py-16">
       <div className="mx-auto w-11/12 max-w-[1280px] px-4 md:px-6">
         <div className="mb-20 flex flex-col items-center text-center">
           <motion.span
