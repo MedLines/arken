@@ -76,14 +76,10 @@ export function ImageViewer() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [activeSlides, setActiveSlides] = useState<number[]>([0, 0, 0])
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  // True between closing the expanded view and the next hover change, so the
+  // hover title morphs back via layoutId instead of replaying its entrance
+  const [isClosing, setIsClosing] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
-  const prevSelectedId = useRef<string | null>(null)
-
-  const isClosing = prevSelectedId.current !== null && selectedId === null
-
-  useEffect(() => {
-    prevSelectedId.current = selectedId
-  }, [selectedId])
 
   // Clear timer when unmounting
   useEffect(() => {
@@ -98,6 +94,7 @@ export function ImageViewer() {
   // Handle Escape key to close selected view
   const handleClose = useCallback(() => {
     setSelectedId(null)
+    setIsClosing(true)
   }, [])
 
   useEffect(() => {
@@ -123,11 +120,13 @@ export function ImageViewer() {
 
   const handleHoverStart = (index: number) => {
     setHoveredIndex(index)
+    setIsClosing(false)
     startSlideTimer(index)
   }
 
   const handleHoverEnd = () => {
     setHoveredIndex(null)
+    setIsClosing(false)
     if (timerRef.current) {
       clearInterval(timerRef.current)
       timerRef.current = null
@@ -160,14 +159,14 @@ export function ImageViewer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedId(null)}
+            onClick={handleClose}
             className="fixed inset-0 z-40 cursor-pointer"
           />
         )}
       </AnimatePresence>
 
       <div
-        className={`relative z-50 container mx-auto flex h-[800px] w-11/12 max-w-[1280px] flex-col justify-center transition-all duration-500 md:h-[700px] md:flex-row md:items-center ${selectedId ? 'gap-0' : 'gap-4'}`}
+        className={`relative z-50 container mx-auto flex h-[800px] w-11/12 max-w-[1280px] flex-col justify-center transition-[gap] duration-500 md:h-[700px] md:flex-row md:items-center ${selectedId ? 'gap-0' : 'gap-4'}`}
       >
         {items.map((item, index) => {
           const isSelected = selectedId === item.id
@@ -181,7 +180,7 @@ export function ImageViewer() {
               onClick={() => {
                 if (isSelected) {
                   // Clicking on selected image closes it
-                  setSelectedId(null)
+                  handleClose()
                 } else if (!selectedId) {
                   // Only select if nothing is currently selected
                   setSelectedId(item.id)
@@ -207,7 +206,6 @@ export function ImageViewer() {
                 <AnimatePresence mode="popLayout">
                   <motion.div
                     key={activeSlides[index]}
-                    layoutId={`image-${item.id}-${activeSlides[index]}`}
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
@@ -304,7 +302,7 @@ export function ImageViewer() {
                         exit={{ opacity: 0, scale: 0.8 }}
                         onClick={(e) => {
                           e.stopPropagation()
-                          setSelectedId(null)
+                          handleClose()
                         }}
                         className="absolute top-6 right-6 z-50 rounded-full bg-black/50 p-2 text-white backdrop-blur-md transition-colors hover:bg-black/70"
                       >

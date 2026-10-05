@@ -37,14 +37,14 @@ export function Hero() {
           'flex max-w-3xl flex-col items-center gap-6 py-12 text-center md:gap-8 md:py-16'
         )}
       >
-        <h1 className="text-foreground animate-in fade-in slide-in-from-bottom-4 fill-mode-both text-center text-4xl leading-tight font-bold duration-500 sm:text-5xl md:text-6xl md:leading-[86.40px]">
+        <h1 className="text-foreground animate-in fade-in slide-in-from-bottom-4 motion-reduce:slide-in-from-bottom-0 fill-mode-both text-center text-4xl leading-tight font-bold duration-500 sm:text-5xl md:text-6xl md:leading-[86.40px]">
           The Future of Living is Precision-Engineered.
         </h1>
-        <p className="text-muted-foreground animate-in fade-in slide-in-from-bottom-4 fill-mode-both text-base leading-normal delay-150 duration-500 md:text-lg">
+        <p className="text-muted-foreground animate-in fade-in slide-in-from-bottom-4 motion-reduce:slide-in-from-bottom-0 fill-mode-both text-base leading-normal delay-150 duration-500 md:text-lg">
           Sustainable, architectural-grade modular homes delivered to your site
           in weeks, not months.
         </p>
-        <div className="animate-in fade-in slide-in-from-bottom-4 fill-mode-both flex flex-col gap-4 delay-300 duration-500 sm:flex-row">
+        <div className="animate-in fade-in slide-in-from-bottom-4 motion-reduce:slide-in-from-bottom-0 fill-mode-both flex flex-col gap-4 delay-300 duration-500 sm:flex-row">
           <CtaButton text="Configure Your Model" variant="outline" />
           <CtaButton text="Download Floor Plans" />
         </div>

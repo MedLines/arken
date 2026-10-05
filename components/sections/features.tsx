@@ -1,7 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform } from 'motion/react'
+import { useLayoutEffect, useRef } from 'react'
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from 'motion/react'
 
 import { Separator } from '@/components/ui/separator'
 
@@ -33,29 +39,29 @@ export function Features() {
     offset: ['start center', 'end end'],
   })
 
-  // Start with a safe default, will update on mount
-  const [targetScale, setTargetScale] = useState(0.92)
-  const [isMobile, setIsMobile] = useState(false)
+  // A motion value (not state) so resizing never re-renders the section
+  const targetScale = useMotionValue(11 / 12)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updateScale = () => {
-      const vw = window.innerWidth
-      setIsMobile(vw < 1024)
-
+      const vw = document.documentElement.clientWidth
       // Navbar inner container is w-11/12 max-w-[1280px]
       const navbarWidth = Math.min(vw * (11 / 12), 1280)
       // We want to scale the w-full container to match navbarWidth
-      const newScale = navbarWidth / vw
-      setTargetScale(newScale)
+      targetScale.set(navbarWidth / vw)
     }
 
     updateScale()
     window.addEventListener('resize', updateScale)
     return () => window.removeEventListener('resize', updateScale)
-  }, [])
+  }, [targetScale])
 
   // 1. Container Scales Down first (0 to 0.35)
-  const scale = useTransform(scrollYProgress, [0, 0.35], [1, targetScale])
+  const shrinkProgress = useTransform(scrollYProgress, [0, 0.35], [0, 1])
+  const scale = useTransform(
+    [shrinkProgress, targetScale],
+    ([progress, target]: number[]) => 1 + (target - 1) * progress
+  )
   const borderRadius = useTransform(scrollYProgress, [0, 0.35], [0, 48])
   const y = useTransform(scrollYProgress, [0, 0.35], [0, 20])
 
@@ -71,21 +77,15 @@ export function Features() {
     >
       <div className="flex flex-col gap-8 lg:sticky lg:top-14 lg:z-20 lg:h-[calc(100vh-3.5rem)] lg:gap-0 lg:overflow-hidden">
         <Marquee />
+        {/* Below lg the scroll-linked styles are overridden in CSS, so the
+            static layout is correct from the first paint */}
         <motion.div
-          style={
-            isMobile
-              ? { scale: 1, borderRadius: '24px', y: 0 }
-              : { scale, borderRadius, y }
-          }
-          className="bg-secondary relative mx-auto flex w-11/12 max-w-[1280px] flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-8 md:py-12 lg:mx-0 lg:w-full lg:max-w-none lg:p-10"
+          style={{ scale, borderRadius, y }}
+          className="bg-secondary relative mx-auto flex w-11/12 max-w-[1280px] flex-1 flex-col justify-center overflow-hidden px-4 py-8 max-lg:transform-none! max-lg:rounded-[24px]! md:px-8 md:py-12 lg:mx-0 lg:w-full lg:max-w-none lg:p-10"
         >
           <motion.div
-            style={
-              isMobile
-                ? { opacity: 1, y: 0 }
-                : { opacity: contentOpacity, y: contentY }
-            }
-            className="container mx-auto mt-8 space-y-12 md:mt-12 md:space-y-16 lg:mt-8 lg:space-y-12"
+            style={{ opacity: contentOpacity, y: contentY }}
+            className="container mx-auto mt-8 space-y-12 max-lg:transform-none! max-lg:opacity-100! md:mt-12 md:space-y-16 lg:mt-8 lg:space-y-12"
           >
             <div className="flex flex-col justify-between gap-8 md:gap-12 lg:flex-row lg:gap-16">
               <div className="space-y-4 lg:w-[45%] lg:space-y-6">
@@ -120,7 +120,6 @@ export function Features() {
                   index={index}
                   total={features.length}
                   scrollYProgress={scrollYProgress}
-                  isMobile={isMobile}
                 />
               ))}
             </div>
@@ -138,7 +137,7 @@ interface FeatureItemProps {
   }
   index: number
   total: number
-  scrollYProgress: any // Using any for MotionValue to avoid complex type import for now, or use MotionValue<number>
+  scrollYProgress: MotionValue<number>
 }
 
 function FeatureItem({
@@ -146,8 +145,7 @@ function FeatureItem({
   index,
   total,
   scrollYProgress,
-  isMobile,
-}: any) {
+}: FeatureItemProps) {
   // 3. Features Stagger In (starting from 0.5)
   const start = 0.5 + index * 0.1
   const end = start + 0.15
@@ -156,8 +154,8 @@ function FeatureItem({
 
   return (
     <motion.div
-      style={isMobile ? { opacity: 1, y: 0 } : { opacity, y }}
-      className="group relative flex flex-col items-center justify-between px-0 text-center lg:items-start lg:px-8 lg:text-left"
+      style={{ opacity, y }}
+      className="group relative flex max-lg:transform-none! max-lg:opacity-100! flex-col items-center justify-between px-0 text-center lg:items-start lg:px-8 lg:text-left"
     >
       <h3 className="text-primary mb-3 text-3xl font-semibold md:text-4xl">
         {feature.title}

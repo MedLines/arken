@@ -35,7 +35,7 @@ const CtaButton = React.forwardRef<HTMLButtonElement, CtaButtonProps>(
           'text-xs leading-5 font-medium tracking-wide', //  tracking looks cleaner for "Architecture"
 
           // 2. Interaction States (Hover & Active)
-          'transition-all duration-300 ease-out',
+          'transition-[color,background-color,border-color,box-shadow,transform] duration-300 ease-out',
           'active:scale-95', // Adds a tactile "click" feel
 
           // 3. Accessibility Focus States (Keyboard navigation)

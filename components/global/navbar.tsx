@@ -15,7 +15,11 @@ export function Navbar() {
   ) => {
     // Special handling for Philosophy section since it has scroll-linked animations
     // The section is 250vh tall and content appears at ~50% scroll progress
-    if (href === '#philosophy') {
+    // The tall sticky layout only exists at lg and up
+    if (
+      href === '#philosophy' &&
+      window.matchMedia('(min-width: 1024px)').matches
+    ) {
       e.preventDefault()
       const section = document.getElementById('philosophy')
       if (section) {
